@@ -80,7 +80,7 @@
 
 <script>
 import {Form, Field, ErrorMessage} from 'vee-validate';
-import {string, ref} from 'yup';
+import {string, ref, object} from 'yup';
 
 export default{
 	components:{
@@ -89,12 +89,12 @@ export default{
 		ErrorMessage
 	},
 	data() {
-		const registerFromSchema = ({
+		const registerFromSchema = object({
 			name : string().required("لطفا نام و نام خانوادگی را وارد نمایید"),
 			email : string().required("ایمیل را وارد نمایید").email("ایمیل نا متعبر است"),
 			phoneNumber : string().required("شماره تلفن را وارد نمایید").min(11, "شماره تلفن نامعتبر است").max(11, "شماره تلفن نامعتبر است"),
 			password : string().required("کلمه عبور مورد نیازاست").min(6, "کلمه عبور باید بیشتر از 5 کاراکتر باشد"),
-			confirmPassword : string().required().oneOf([ref("password"), null], "کلمه های عبور یکسان نیستند"),
+			confirmPassword : string().required("تکرار کلمه عبور مورد نیاز است").oneOf([ref("password"), null], "کلمه های عبور یکسان نیستند"),
 			role : string().required("نوع کاربر را مشخص کنید")
 		})
 		return{
