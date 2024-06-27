@@ -26,7 +26,7 @@
 
 <script>
 import {Form, Field, ErrorMessage} from 'vee-validate';
-import {string} from 'yup';
+import {string, object} from 'yup';
 export default{
     components :{
         Form,
@@ -34,7 +34,7 @@ export default{
         ErrorMessage
     },
     data(){
-        const loginFromSchema = ({
+        const loginFromSchema = object({
             email: string().required("ایمیل را وارد کنید").email("ایمیل نا متعبراست"),
             password: string().required("کلمه عبور مورد نیازاست").min(6, "کلمه عبور باید بیشتر از 5 کاراکتر باشد"),
         })
